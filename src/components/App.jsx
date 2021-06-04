@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import PersonTable from "./PersonTable";
 import PersonDetails from "./PersonDetails";
 import PersonCreate from "./PersonCreate";
-import getPeople, { getPersonById } from "../api/peopleApi";
+import getPeople, { getPersonById, createPerson, deletePerson } from "../api/peopleApi";
 import "../css/App.css";
 
 class App extends Component {
@@ -54,19 +54,27 @@ class App extends Component {
     });
   };
 
-  deletePerson = (id) => {
+  deletePersonHandler = (id) => {
     const person = this.findPerson(id);
     if (person != null) {
-      const people = this.state.peopleList;
-      people.splice(people.indexOf(person), 1);
+
+if (deletePerson(id)) {
+const people = this.state.peopleList;
+
+people.forEach((element) => {
+  if (element.id === id) {
+    people.pop(element);
+  }
+      });
+
       this.setState({
         peopleList: people,
         detailsPerson: null,
-      });
+}     );
     }
-  };
+  
 
-  createPerson = () => {
+  showCreatePerson = () => {
     this.setState({
       createPerson: true,
     });
@@ -74,20 +82,24 @@ class App extends Component {
 
   addPerson = (person) => {
     const peopleList = this.state.peopleList;
-    if (peopleList === null || peopleList.length < 1) {
-      person.id = 1;
-    } else {
-      const newId =
-        peopleList.reduce((rowPerson, highest) => {
-          if (rowPerson.id > highest.id) {
-            return rowPerson.id;
-          }
-          return highest;
-        }).id + 1; 
-      person.id = newId;
-    }
+    // if (peopleList === null || peopleList.length < 1) {
+    //   person.id = 1;
+    // } else {
+    //   const newId =
+    //     peopleList.reduce((rowPerson, highest) => {
+    //       if (rowPerson.id > highest.id) {
+    //         return rowPerson.id;
+    //       }
+    //       return highest;
+    //     }).id + 1; 
+    //   person.id = newId;
+    // }
 
+person = await createPerson(person);
+
+if (person !== undefined) {
     peopleList.push(person);
+}
 
     this.setState({
       peopleList: peopleList,
@@ -107,13 +119,13 @@ class App extends Component {
         <PersonDetails
           person={this.state.detailsPerson}
           closeDetails={this.closeDetails}
-          deletePerson={this.deletePerson}
+          deletePerson={this.deletePersonHandler}
         />
       ) : this.state.createPerson ? (
         <PersonCreate addPerson={this.addPerson} closeCreate={this.closeCreate} />
       ) : (
         <div>
-          <button onClick={this.createPerson} className="btn btn-success">
+          <button onClick={this.showCreatePerson} className="btn btn-success">
             Add Person
           </button>
           <p>Click on Details button to see more information here.</p>
@@ -121,7 +133,8 @@ class App extends Component {
       );
 
     return (
-      <div>
+      <React.Fragment>
+
         <Header />
 
         <div className="container stay-clear">
@@ -134,9 +147,9 @@ class App extends Component {
         </div>
 
         <Footer />
-      </div>
+      </React.Fragment>
     );
   }
 }
-
-export default App;
+  
+export default App;}}

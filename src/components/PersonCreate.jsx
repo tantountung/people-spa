@@ -5,9 +5,9 @@ class PersonCreate extends Component {
 
     const person = {
       id: 0,
-      name: event.target["name"].value,
-      phoneNumber: event.target["phoneNumber"].value,
-      cityId: Number(event.target["cityId"].value),
+      Name: event.target["name"].value,
+      PhoneNumber: event.target["phoneNumber"].value,
+      CityId: Number(event.target["cityId"].value),
     };
 
     this.props.addPerson(person);
