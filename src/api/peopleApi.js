@@ -6,7 +6,13 @@ export default function getPeople() {
         .then(data => data.json());
 }
 
-export function getPersonById(id) {
-    return fetch('https://localhost:44304/api/React/' + id)
-        .then(data => data.json());
+export async function getPersonById(id) {
+    try {
+        return fetch('https://localhost:44304/api/React/' + id);
+        let json = await response.json();
+        return json;
+        }
+        catch (e) {
+            console.log('Error!', e);
+}
 }
