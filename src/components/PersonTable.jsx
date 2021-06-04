@@ -4,9 +4,9 @@ const PersonTable = (props) => {
   const rows = props.people.map((person) => {
     return (
       <tr key={person.id}>
-        <td className="fontcolor">{person.Name}</td>
-        <td className="fontcolor">{person.PhoneNumber}</td>
-        <td className="fontcolor">{person.CityId}</td>
+        <td >{person.name}</td>
+        <td >{person.phoneNumber}</td>
+        <td >{person.cityId}</td>
         <td
           className="btn btn-info"
           onClick={() => {

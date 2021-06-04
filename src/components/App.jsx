@@ -4,32 +4,39 @@ import Footer from "./Footer";
 import PersonTable from "./PersonTable";
 import PersonDetails from "./PersonDetails";
 import PersonCreate from "./PersonCreate";
-import getPeople from "../api/peopleApi";
+import getPeople, { getPersonById } from "../api/peopleApi";
 import "../css/App.css";
 
 class App extends Component {
   state = {
     detailsPerson: null,
     createPerson: false,
-    personList: [],
+    peopleList: [],
   };
 
   componentDidMount() {
     const _this = this;
     getPeople().then((people) => {
-      _this.setState({ personList: people });
+      _this.setState({ peopleList: people });
     });
   }
 
   findPerson = (id) => {
-    const people = this.state.personList;
-    let foundPerson = null;
-    people.forEach((element) => {
-      if (element.id === id) {
-        foundPerson = element;
-      }
+    // const people = this.state.peopleList;
+    // let foundPerson = null;
+    // people.forEach((element) => {
+    //   if (element.id === id) {
+    //     foundPerson = element;
+    //   }
+    // });
+
+  
+
+    getPersonById(id).then((person) => {
+      return person;
     });
-    return foundPerson;
+    
+    
   };
 
   showPerson = (id) => {
@@ -50,10 +57,10 @@ class App extends Component {
   deletePerson = (id) => {
     const person = this.findPerson(id);
     if (person != null) {
-      const people = this.state.personList;
+      const people = this.state.peopleList;
       people.splice(people.indexOf(person), 1);
       this.setState({
-        personList: people,
+        peopleList: people,
         detailsPerson: null,
       });
     }
@@ -66,12 +73,12 @@ class App extends Component {
   };
 
   addPerson = (person) => {
-    const personList = this.state.personList;
-    if (personList === null || personList.length < 1) {
+    const peopleList = this.state.peopleList;
+    if (peopleList === null || peopleList.length < 1) {
       person.id = 1;
     } else {
       const newId =
-        personList.reduce((rowPerson, highest) => {
+        peopleList.reduce((rowPerson, highest) => {
           if (rowPerson.id > highest.id) {
             return rowPerson.id;
           }
@@ -80,10 +87,10 @@ class App extends Component {
       person.id = newId;
     }
 
-    personList.push(person);
+    peopleList.push(person);
 
     this.setState({
-      personList: personList,
+      peopleList: peopleList,
       createPerson: false,
     });
   };
@@ -121,7 +128,7 @@ class App extends Component {
           <h3>Person SPA</h3>
           <hr />
           <div className="row">
-            <PersonTable people={this.state.personList} showPerson={this.showPerson} />
+            <PersonTable people={this.state.peopleList} showPerson={this.showPerson} />
             {sideElement}
           </div>
         </div>

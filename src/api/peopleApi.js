@@ -8,7 +8,7 @@ export default function getPeople() {
 
 export async function getPersonById(id) {
     try {
-        return fetch('https://localhost:44304/api/React/' + id);
+        let response = await fetch('https://localhost:44304/api/React/' + id);
         let json = await response.json();
         return json;
         }

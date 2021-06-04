@@ -22,7 +22,7 @@ class PersonCreate extends Component {
 
         <form onSubmit={this.createPerson}>
           <div className="row mb-2">
-            <label htmlFor="brand" className="col-2 mt-2">
+            <label htmlFor="name" className="col-2 mt-2">
               Name:
             </label>
             <input
