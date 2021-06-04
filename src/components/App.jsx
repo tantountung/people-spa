@@ -21,7 +21,7 @@ class App extends Component {
     });
   }
 
-  findPerson = (id) => {
+  findPerson = async (id) => {
     // const people = this.state.peopleList;
     // let foundPerson = null;
     // people.forEach((element) => {
@@ -30,17 +30,14 @@ class App extends Component {
     //   }
     // });
 
-  
-
-    getPersonById(id).then((person) => {
-      return person;
-    });
+      return await  getPersonById(id);
+    };
     
     
-  };
 
-  showPerson = (id) => {
-    const person = this.findPerson(id);
+
+  showPerson = async (id) => {
+    const person = await this.findPerson(id);
     if (person != null) {
       this.setState({
         detailsPerson: person,
@@ -72,7 +69,7 @@ people.forEach((element) => {
         detailsPerson: null,
 }     );
     }
-  
+    }};
 
   showCreatePerson = () => {
     this.setState({
@@ -80,7 +77,7 @@ people.forEach((element) => {
     });
   };
 
-  addPerson = (person) => {
+  addPerson = async (person) => {
     const peopleList = this.state.peopleList;
     // if (peopleList === null || peopleList.length < 1) {
     //   person.id = 1;
@@ -124,7 +121,7 @@ if (person !== undefined) {
       ) : this.state.createPerson ? (
         <PersonCreate addPerson={this.addPerson} closeCreate={this.closeCreate} />
       ) : (
-        <div>
+        <div className="col-md-6">
           <button onClick={this.showCreatePerson} className="btn btn-success">
             Add Person
           </button>
@@ -149,7 +146,7 @@ if (person !== undefined) {
         <Footer />
       </React.Fragment>
     );
-  }
+    }
+
 }
-  
-export default App;}}
+export default App;

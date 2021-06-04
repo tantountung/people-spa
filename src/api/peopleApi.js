@@ -32,9 +32,9 @@ catch (e) {
 }
 }
 
-export async function deletePerson (id) {
+export async function deletePerson(id) {
     try {
-       let response = await axios.delete('https://localhost:44304/api/React/' +id), 
+       let response = await axios.delete('https://localhost:44304/api/React/' +id);
      
    return true;
    }
