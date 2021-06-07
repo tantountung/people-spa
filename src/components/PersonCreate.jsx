@@ -7,7 +7,8 @@ class PersonCreate extends Component {
       id: 0,
       Name: event.target["name"].value,
       PhoneNumber: event.target["phoneNumber"].value,
-      CityId: Number(event.target["cityId"].value),
+      CityName: Number(event.target["cityName"].value),
+      CountryName: Number(event.target["countryName"].value),
     };
 
     this.props.addPerson(person);
@@ -47,17 +48,28 @@ class PersonCreate extends Component {
             />
           </div>
           <div className="row mb-2">
-            <label htmlFor="cityId" className="col-2 mt-2">
-              City Id:
+            <label htmlFor="cityName" className="col-2 mt-2">
+              City Name:
             </label>
             <input
-              id="cityId"
-              type="number"
+              id="cityName"
               required
-              step="1"
-              min="1"
-              className="form-control col-10"
-              placeholder="Enter City Id"
+             className="form-control col-10"
+              placeholder="Enter City Name"
+            />
+          </div>
+          <div className="row mb-2">
+
+
+            
+            <label htmlFor="countryName" className="col-2 mt-2">
+              Country Name:
+            </label>
+            <input
+              id="countryName"
+              required
+             className="form-control col-10"
+              placeholder="Enter Country Name"
             />
           </div>
 
