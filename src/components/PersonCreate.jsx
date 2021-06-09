@@ -7,14 +7,28 @@ class PersonCreate extends Component {
       id: 0,
       Name: event.target["name"].value,
       PhoneNumber: event.target["phoneNumber"].value,
-      CityName: Number(event.target["cityName"].value),
-      CountryName: Number(event.target["countryName"].value),
+      CityId: Number(event.target["city"].value),
+      // CountryName: event.target["country"].value,
     };
 
     this.props.addPerson(person);
   };
 
   render() {
+    const optionCity = this.props.cityArray.map((city) => {
+      return ( 
+        <option key={city.id} value={city.id}>
+          {city.cityName}
+          </option>     
+      );
+    });
+
+    // const optionCountry = this.props.countryArray.map((country) => {
+    //   return ( 
+    //     <option value={country.id}>{country.countryName}</option>     
+    //   );
+    // });
+    
     return (
       <div className="col-md-6">
         <div className="row">
@@ -48,30 +62,21 @@ class PersonCreate extends Component {
             />
           </div>
           <div className="row mb-2">
-            <label htmlFor="cityName" className="col-2 mt-2">
-              City Name:
+            <label htmlFor="city" className="col-2 mt-2">
+              City:
             </label>
-            <input
-              id="cityName"
-              required
-             className="form-control col-10"
-              placeholder="Enter City Name"
-            />
+            <select id="city" required className="form-control col-10">
+              {optionCity}
+            </select>          
           </div>
-          <div className="row mb-2">
-
-
-            
-            <label htmlFor="countryName" className="col-2 mt-2">
-              Country Name:
+          {/* <div className="row mb-2">
+            <label htmlFor="country" className="col-2 mt-2">
+            Country:
             </label>
-            <input
-              id="countryName"
-              required
-             className="form-control col-10"
-              placeholder="Enter Country Name"
-            />
-          </div>
+            <select id="country" required className="form-control col-10">
+              {optionCountry}
+            </select>          
+          </div> */}
 
           <div className="row d-flex justify-content-center">
             <input

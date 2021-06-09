@@ -6,6 +6,16 @@ export default function getPeople() {
         .then(data => data.json());
 }
 
+export  function getCities() {
+    return fetch('https://localhost:44304/api/React/Cities')
+        .then(data => data.json());
+}
+
+// export function getCountries() {
+//     return fetch('https://localhost:44304/api/React/Countries')
+//     //to call the table, must activate backend too
+//         .then(data => data.json());
+// }
 export async function getPersonById(id) {
     try {
         let response = await fetch('https://localhost:44304/api/React/' + id);
@@ -22,9 +32,7 @@ export async function createPerson (person) {
     let response = await axios.post('https://localhost:44304/api/React/', { 
 Name: person.Name,
 PhoneNumber: person.PhoneNumber,
-CityName: person.CityName,
-CountryName: person.CountryName,
-LanguageName: person.LanguageName
+CityId: person.CityId
 });
 let json = await response.data;
 return json;

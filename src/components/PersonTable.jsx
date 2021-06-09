@@ -6,7 +6,7 @@ const PersonTable = (props) => {
       <tr key={person.id}>
         <td >{person.name}</td>
         <td >{person.phoneNumber}</td>
-        <td >{person.cityId}</td>
+        <td >{person.city.cityName}</td>
         <td
           className="btn btn-info"
           onClick={() => {
@@ -24,8 +24,9 @@ const PersonTable = (props) => {
         <thead className="thead-dark">
           <tr>
             <th>Name</th>
-            <th>PhoneNumber</th>
-            <th>CityId</th>
+            <th>Phone Number</th>
+            <th>City Name</th>
+            {/* <th>Country Name</th> */}
             <th>Actions</th>
           </tr>
         </thead>

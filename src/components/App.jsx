@@ -4,11 +4,12 @@ import Footer from "./Footer";
 import PersonTable from "./PersonTable";
 import PersonDetails from "./PersonDetails";
 import PersonCreate from "./PersonCreate";
-import getPeople, { getPersonById, createPerson, deletePerson } from "../api/peopleApi";
+import getPeople, { getPersonById, createPerson, deletePerson, getCities } from "../api/peopleApi";
 import "../css/App.css";
 
 class App extends Component {
   state = {
+    cityList: [],
     detailsPerson: null,
     createPerson: false,
     peopleList: [],
@@ -19,6 +20,14 @@ class App extends Component {
     getPeople().then((people) => {
       _this.setState({ peopleList: people });
     });
+
+    getCities().then((cities) => {
+      _this.setState({ cityList: cities });
+    });
+
+    // getCountries().then((countries) => {
+    //   _this.setState({ countryList: countries });
+    // });
   }
 
   findPerson = async (id) => {
@@ -119,7 +128,12 @@ if (person !== undefined) {
           deletePerson={this.deletePersonHandler}
         />
       ) : this.state.createPerson ? (
-        <PersonCreate addPerson={this.addPerson} closeCreate={this.closeCreate} />
+        <PersonCreate 
+        addPerson={this.addPerson} 
+        closeCreate={this.closeCreate} 
+        cityArray={this.state.cityList}
+        // countryArray={this.state.countryList} 
+        />
       ) : (
         <div className="col-md-6">
           <button onClick={this.showCreatePerson} className="btn btn-success">
@@ -138,7 +152,8 @@ if (person !== undefined) {
           <h3>Person SPA</h3>
           <hr />
           <div className="row">
-            <PersonTable people={this.state.peopleList} showPerson={this.showPerson} />
+            <PersonTable people={this.state.peopleList} 
+            showPerson={this.showPerson} />
             {sideElement}
           </div>
         </div>
