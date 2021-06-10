@@ -3,15 +3,11 @@ import React from "react";
 const PersonDetails = (props) => {
 
   let countryName = 'No Country';
-  if(props.person.city != null){
+  if(props.person.City != null){
           
-    if(props.person.city.Country != null){
-        countryName = props.person.cityId.city.Country
-        .countryName.map((c) =>{
-            return (
-                <p key={c.id}>{c.countryName}</p>
-            );
-        })
+    if(props.person.City.Country != null){
+        countryName = props.person.City.Country
+        .CountryName;
     }
 }
 

@@ -32,7 +32,7 @@ export async function createPerson (person) {
     let response = await axios.post('https://localhost:44304/api/React/', { 
 Name: person.Name,
 PhoneNumber: person.PhoneNumber,
-CityId: person.CityId
+CityId: person.CityId,
 });
 let json = await response.data;
 return json;
