@@ -11,11 +11,12 @@ export  function getCities() {
         .then(data => data.json());
 }
 
-// export function getCountries() {
-//     return fetch('https://localhost:44304/api/React/Countries')
-//     //to call the table, must activate backend too
-//         .then(data => data.json());
-// }
+export function getCountries() {
+    return fetch('https://localhost:44304/api/React/Countries')
+    //to call the table, must activate backend too
+        .then(data => data.json());
+}
+
 export async function getPersonById(id) {
     try {
         let response = await fetch('https://localhost:44304/api/React/' + id);
@@ -33,6 +34,8 @@ export async function createPerson (person) {
 Name: person.Name,
 PhoneNumber: person.PhoneNumber,
 CityId: person.CityId,
+// CountryId: person.CountryId,
+Language: person.Language,
 });
 let json = await response.data;
 return json;

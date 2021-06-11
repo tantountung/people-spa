@@ -11,6 +11,15 @@ const PersonDetails = (props) => {
     }
 }
 
+let languageName = 'No Language';
+  if(props.person.personLanguages != null){
+          
+    if(props.person.personLanguages.Language != null){
+      languageName = props.person.personLanguages.Language;
+    }
+
+
+
 
 
   return (
@@ -29,10 +38,20 @@ const PersonDetails = (props) => {
           <p>{props.person.city == null? 
           'No City': props.person.city.cityName}</p>
         </li>
-        {/* <li className="list-group-item">
+
+        <li className="list-group-item">
           <b>Country Name:</b>
-          <p>{props.person.countryName}</p>
-        </li> */}
+          <p>{props.person.city.country == null? 
+          'No Country': props.person.city.country.countryName}</p>
+          {/* <p>{countryName}</p> */}
+        </li>
+
+        <li className="list-group-item">
+          <b>Languages:</b>
+          <p>{props.person.personLanguages.Language == null? 
+          'No Language': props.person.personLanguages.Language}</p>
+          {/* <p>{languageName}</p> */}
+        </li>
 
         <li className="list-group-item">
           <b>Actions:</b>
@@ -48,6 +67,6 @@ const PersonDetails = (props) => {
       </ul>
     </div>
   );
-};
+          }}
 
 export default PersonDetails;

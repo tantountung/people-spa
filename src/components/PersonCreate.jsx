@@ -23,12 +23,14 @@ class PersonCreate extends Component {
       );
     });
 
-    // const optionCountry = this.props.countryArray.map((country) => {
-    //   return ( 
-    //     <option value={country.id}>{country.countryName}</option>     
-    //   );
-    // });
-    
+    const optionCountry = this.props.countryArray.map((country) => {
+      return ( 
+        <option key={country.id} value={country.id}>
+          {country.countryName}</option>     
+      );
+    });
+  
+  
     return (
       <div className="col-md-6">
         <div className="row">
@@ -61,6 +63,7 @@ class PersonCreate extends Component {
               placeholder="Enter Phone Number"
             />
           </div>
+
           <div className="row mb-2">
             <label htmlFor="city" className="col-2 mt-2">
               City:
@@ -69,14 +72,15 @@ class PersonCreate extends Component {
               {optionCity}
             </select>          
           </div>
-          {/* <div className="row mb-2">
+          
+          <div className="row mb-2">
             <label htmlFor="country" className="col-2 mt-2">
             Country:
             </label>
             <select id="country" required className="form-control col-10">
               {optionCountry}
             </select>          
-          </div> */}
+          </div>
 
           <div className="row d-flex justify-content-center">
             <input
@@ -96,7 +100,7 @@ class PersonCreate extends Component {
         </div>
       </div>
     );
+    }
   }
-}
 
 export default PersonCreate;

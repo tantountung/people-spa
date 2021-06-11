@@ -4,12 +4,15 @@ import Footer from "./Footer";
 import PersonTable from "./PersonTable";
 import PersonDetails from "./PersonDetails";
 import PersonCreate from "./PersonCreate";
-import getPeople, { getPersonById, createPerson, deletePerson, getCities } from "../api/peopleApi";
+import getPeople, { 
+  getPersonById, createPerson, 
+  deletePerson, getCities, getCountries } from "../api/peopleApi";
 import "../css/App.css";
 
 class App extends Component {
   state = {
     cityList: [],
+    countryList: [],
     detailsPerson: null,
     createPerson: false,
     peopleList: [],
@@ -25,9 +28,9 @@ class App extends Component {
       _this.setState({ cityList: cities });
     });
 
-    // getCountries().then((countries) => {
-    //   _this.setState({ countryList: countries });
-    // });
+    getCountries().then((countries) => {
+      _this.setState({ countryList: countries });
+    });
   }
 
   findPerson = async (id) => {
@@ -132,7 +135,7 @@ if (person !== undefined) {
         addPerson={this.addPerson} 
         closeCreate={this.closeCreate} 
         cityArray={this.state.cityList}
-        // countryArray={this.state.countryList} 
+        countryArray={this.state.countryList} 
         />
       ) : (
         <div className="col-md-6">
