@@ -2,20 +2,28 @@ import React from "react";
 
 const PersonDetails = (props) => {
 
-  let countryName = 'No Country';
-  if(props.person.City != null){
+//   let countryName = 'No Country';
+//   if(props.person.city != null){
           
-    if(props.person.City.Country != null){
-        countryName = props.person.City.Country
-        .CountryName;
-    }
-}
+//     if(props.person.city.country != null){
+//         countryName = props.person.city.country
+//         .countryName;
+//     }
+// } corrupt code, messsed up the below ones
+
 
 let languageName = 'No Language';
   if(props.person.personLanguages != null){
           
-    if(props.person.personLanguages.Language != null){
-      languageName = props.person.personLanguages.Language;
+    // if(props.person.personLanguages.Language != null){
+      languageName = props.person.personLanguages.map((personLanguage) =>
+      
+      {
+return (
+    <p key = {personLanguage.language.id}>{personLanguage.language.languangeName}</p>
+ )
+      });
+      console.log('language Name:', languageName);
     }
 
 
@@ -48,9 +56,9 @@ let languageName = 'No Language';
 
         <li className="list-group-item">
           <b>Languages:</b>
-          <p>{props.person.personLanguages.Language == null? 
-          'No Language': props.person.personLanguages.Language}</p>
-          {/* <p>{languageName}</p> */}
+          {/* <p>{props.person.personLanguages == null? 
+          'No Language': props.person.personLanguages.Language}</p> */}
+          <p>{languageName}</p>
         </li>
 
         <li className="list-group-item">
@@ -67,6 +75,6 @@ let languageName = 'No Language';
       </ul>
     </div>
   );
-          }}
+          }
 
 export default PersonDetails;
